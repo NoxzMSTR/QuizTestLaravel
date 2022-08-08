@@ -25,6 +25,21 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="{{asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
+  <style>
+    .error{
+        color: red;
+        font-size: small;
+    }
+    #example1_filter > label {
+        float: right;
+    }
+  </style>
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -82,12 +97,45 @@
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
+<!-- Jquery Repeater -->
+<script src="{{asset('plugins/repeater/jquery.repeater.js')}}"></script>
+<!-- jquery-validation -->
+<script src="{{asset('plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+<script src="{{asset('plugins/jquery-validation/additional-methods.min.js')}}"></script>
+<!-- BS-Stepper -->
+<script src="{{asset('plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
+<!-- custom for ajax post -->
+<script src="{{asset('js/core.js')}}"></script>
+<script>
+   var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+</script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
 @yield('js')
 </body>
 </html>

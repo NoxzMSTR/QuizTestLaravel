@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('quiz_questions', function (Blueprint $table) {
             $table->id();
+            $table->index('quiz_id');
+            $table->foreignId('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
+            $table->enum('type',['single','multiple']);
+            $table->text('quiz_question');
+            $table->text('quiz_answer');
+            $table->text('quiz_correct_answer');
             $table->timestamps();
         });
     }

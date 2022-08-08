@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class,'index']);
+Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+Route::get('/{quiz}/start-quiz', [DashboardController::class,'startQuiz'])->middleware(['auth'])->name('startQuiz');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get('/{quiz}/attempt-quiz', [QuizController::class,'quizAttemptView'])->middleware(['auth'])->name('quizAttempt');
+Route::post('/{quiz}/attempt-quiz', [QuizController::class,'addAttemptedQuizQues'])->middleware(['auth'])->name('saveAttemptedQuizQues');
+Route::get('/view-quiz', [QuizController::class,'quizView'])->name('viewQuiz');
+Route::post('/add-quiz', [QuizController::class,'addQuiz'])->name('addQuiz');
+
+Route::get('/{quiz}/view-quiz-question', [QuizController::class,'viewQuizQues'])->name('viewQuizQuestions');
+Route::post('/{quiz}/view-quiz-question', [QuizController::class,'addQuizQues'])->name('addQuizQuestions');
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
