@@ -113,6 +113,11 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-12 col-xl-12">
+                            <label for="exampleSelectBorder">Quiz Average</label>
+                            <input name="average" type="number" min="1" max="100" minlength="1" maxlength="100" class="form-control form-control-border"
+                            id="exampleInputBorder" placeholder="Enter Average">
+                        </div>
+                        <div class="form-group col-sm-12 col-xl-12">
                             <label for="exampleSelectBorder">Quiz Short Description</label>
                             <textarea name="short_description" class="form-control" rows="3" placeholder="Enter Short Description.."></textarea>
                         </div>

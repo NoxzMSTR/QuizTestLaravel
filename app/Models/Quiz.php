@@ -12,6 +12,7 @@ class Quiz extends Model
     protected $fillable = [
         'title',
         'duration',
+        'average',
         'short_description'
     ];
     public function quizQues()
@@ -30,7 +31,7 @@ class Quiz extends Model
             'user_id' => Auth::user()->id
         ]);
         if ($start) {
-            return true;
+            return $start;
         }else{
             return false;
         }

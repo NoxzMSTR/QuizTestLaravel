@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('short_description')->nullable();
             $table->time('duration');
+            $table->integer('average');
             $table->timestamps();
         });
     }

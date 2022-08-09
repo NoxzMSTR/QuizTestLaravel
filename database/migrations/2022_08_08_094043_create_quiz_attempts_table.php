@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->index('quiz_id');
             $table->foreignId('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
+            $table->enum('status',['attempting','overdue','completed','failed'])->default('attempting');
             $table->bigInteger('total')->nullable();
             $table->timestamps();
         });

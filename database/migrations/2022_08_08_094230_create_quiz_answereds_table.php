@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('quiz_answereds', function (Blueprint $table) {
             $table->id();
-            $table->index('user_id');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->index('quiz_attempt_id');
+            $table->foreignId('quiz_attempt_id')->references('id')->on('quiz_attempts')->onDelete('cascade');
             $table->index('quiz_question_id');
             $table->foreignId('quiz_question_id')->references('id')->on('quiz_questions')->onDelete('cascade');
             $table->text('quiz_answered');

@@ -19,7 +19,7 @@
 
     <section class="content">
         <div class="container-fluid">
-            <form id="addAttemptedQQ" action="{{route('saveAttemptedQuizQues',[$quiz])}}" method="post">
+            <form id="addAttemptedQQ" action="{{route('saveAttemptedQuizQues',[$quizAtmpt])}}" method="post">
                 @csrf
                 <div class="row">
                 
@@ -27,8 +27,8 @@
                             <div class="card card-default">
                                 <div class="card-header">
                                     <h3 class="card-title">Attempting Quiz</h3>
-                                    <div class="card-tools">
-                                        Duration: {{$quiz->duration}}
+                                    <div id="duration" class="card-tools">
+                                        Duration: {{$currentElaps}}
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -175,13 +175,13 @@
         var getID = $('.form-group').parent().eq(index).find('input:text');
         var getInputsType = getInputs.attr('type');
         if (getInputsType == 'radio') {
-            $('.ques_'+getID.val()).html('Selected Answer: '+getInputs.val());
+            $('.ques_'+getID.val()).html('Selected Answer: '+getInputs.parent().text());
         }else{
             getInputs.each(function(i, obj) {
                 if (i == 0) {
-                    $('.ques_'+getID.val()).html('Selected Answer: '+$(obj).val());
+                    $('.ques_'+getID.val()).html('Selected Answer: '+$(obj).parent().text());
                 } else {
-                    $('.ques_'+getID.val()).append('<br>Selected Answer: '+$(obj).val());
+                    $('.ques_'+getID.val()).append('<br>Selected Answer: '+$(obj).parent().text());
                 }
           
             })
@@ -201,7 +201,9 @@
                     icon: 'success',
                     title: response.message
                 });
-                
+                setTimeout(() => {
+                    window.location.href = response.url;
+                }, 500);
               
             }).catch(function(error) {
                 if (error.responseJSON) {
@@ -215,5 +217,48 @@
             return false; //This doesn't prevent the form from submitting.
         }
     });
+</script>
+<script>
+var intervals = []; //prepare the intervals holder
+function countdown(nr,initime,endtxt){
+    var selector = "#duration";//actual class name will be .timer_123 (if nr=123)
+    var timer2 = initime; //"71:10:07"; //unlimited hours
+    
+    intervals['countdown_'+nr] = setInterval(function() {
+        var timer = timer2.split(':');
+        //by parsing integer, I avoid all extra string processing
+        var hours = parseInt(timer[0], 10);
+        var minutes = parseInt(timer[1], 10);
+        var seconds = parseInt(timer[2], 10);
+        
+        --seconds; //decrement secs first
+        
+        minutes = (seconds < 0) ? --minutes : minutes;
+        hours = (minutes < 0) ? --hours : hours;
+
+            
+        if (hours < 0 && minutes < 0 && seconds < 0) {
+            clearInterval(intervals['countdown_'+nr]);
+            $(selector).html(endtxt);
+        } else {
+            //console.log(selector+"_"+nr, timer, timer2);
+            
+            //do 59 reset here to allow detection of negative values above
+            seconds = (seconds < 0) ? 59 : seconds;
+            minutes = (minutes < 0) ? 59 : minutes;         
+            
+            //set new timer value
+            timer2 = hours + ':' + minutes + ':' + seconds;
+            
+            //start changes for display only
+            seconds = (seconds < 10) ? '00' + seconds : seconds;
+            minutes = (minutes < 10) ? '00' + minutes : minutes; 
+            $(selector).html('Duration: '+hours + ':' + minutes + ':' + seconds);
+            
+        } 
+        
+    }, 1000);   
+}
+countdown('1',"{{$currentElaps}}","Duration: Overdue");
 </script>
 @endsection

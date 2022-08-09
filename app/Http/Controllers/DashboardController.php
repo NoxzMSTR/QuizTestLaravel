@@ -17,7 +17,7 @@ class DashboardController extends Controller
     {
         $start = $quiz->startQuiz();
         if ($start) {
-           return redirect()->route('quizAttempt',[$quiz]);
+           return redirect()->route('quizAttempt',[$start->id]);
         } else {
             return redirect()->back()->with(['error' => 'Failed to start quiz! Please try again later']);
         }
