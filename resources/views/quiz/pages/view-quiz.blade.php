@@ -170,7 +170,7 @@
                     formData[0].reset();
                     setTimeout(() => {
                         location.reload();
-                    }, 3000);
+                    }, 1500);
                 }).catch(function(error) {
                     if (error.responseJSON) {
                         Toast.fire({

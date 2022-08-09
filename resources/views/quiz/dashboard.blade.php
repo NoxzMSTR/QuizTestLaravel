@@ -29,7 +29,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>150</h3>
+                                <h3>{{$TotalQuizzes}}</h3>
 
                                 <p>Total Quizzes</p>
                             </div>
@@ -59,7 +59,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>44</h3>
+                                <h3>{{$TotalUsers}}</h3>
 
                                 <p>Total Users</p>
                             </div>
@@ -120,7 +120,13 @@
                                             <td>{{$quiz->title}}</td>
                                             <td>{{$quiz->duration}}
                                             </td>
-                                            <td><a href="{{route('startQuiz',[$quiz->id])}}" class="btn btn-info">Start Quiz</a></td>
+                                            <td>
+                                                <a href="{{route('subscribe',[$quiz->id])}}" class="btn btn-info">Subscribe Quiz</a>
+                                                @if ($quiz->quizQues()->count() !== 0)
+                                                <a href="{{route('startQuiz',[$quiz->id])}}" class="btn btn-success">Start Quiz</a>
+                                                @endif
+                                                
+                                            </td>
                                         </tr>
                                         @endforeach
                                         
@@ -241,6 +247,14 @@
 @endsection
 
 @section('js')
+    <script>
+        @if(session()->has('message'))
+                 Toast.fire({
+                    icon: 'success',
+                    title: "{{ session()->get('message') }}"
+                });
+        @endif
+    </script>
     <script>
         $("#example1").DataTable({
             "responsive": true,

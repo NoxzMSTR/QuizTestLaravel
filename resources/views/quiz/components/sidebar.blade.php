@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Quiz Test</span>
     </a>
 
@@ -63,6 +63,7 @@
               </li>
             </ul> --}}
           </li>
+          @if (Auth::check())
           <li class="nav-item {{Request::url() == route('viewQuiz') ? 'menu-open' : null}}">
             <a href="#" class="nav-link {{Request::url() == route('viewQuiz') ? 'active' : null}}">
               <script>
@@ -70,7 +71,7 @@
               </script>
               <i class="nav-icon fas fa-copy"></i>
               <p>
-                Quiz Options
+                Quiz Menu
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -89,6 +90,7 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- 
             <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">

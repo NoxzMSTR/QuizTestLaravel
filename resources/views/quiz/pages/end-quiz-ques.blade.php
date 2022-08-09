@@ -35,7 +35,7 @@
                                     <h2><strong>{{$testAverage}}</strong></h2>
                                     <h4>{{$scored}}</h4>
                                     <h6>{{$status}}</h6>
-                                    <a href="{{route('dashboard')}}" class="btn btn-info">Subscribe Quiz</a>
+                                    <a href="{{route('subscribe',[$quiz->id])}}" class="btn btn-info">Subscribe Quiz</a>
                                     <a href="{{route('dashboard')}}" class="btn btn-dark">Go to dashboard</a>
                                 </div>
                                 <!-- /.card-body -->

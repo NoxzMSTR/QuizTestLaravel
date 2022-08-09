@@ -126,10 +126,29 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+      @if (Auth::check())
       <li class="nav-item">
+        <a class="nav-link" href="{{route('logout')}}" role="button">
+          Logout
+        </a>
+      </li>
+      @else
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('login')}}" role="button">
+          Login
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('register')}}" role="button">
+          Register
+        </a>
+      </li>
+      @endif
+  
+      {{-- <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>
